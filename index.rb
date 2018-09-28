@@ -1,7 +1,9 @@
 require_relative 'robot'
 
-p robot = Robot.new(4,3,'WEST')
-
+robot = Robot.new(3, 4, 'WEST', 5, 6)
+robot.table_size
+robot.place
+puts 'Robot in table!'
 loop do
   puts '____________________________________________________________________________________________________'
   puts 'Allowed commands:'
@@ -13,4 +15,3 @@ loop do
   puts '    EXIT   - To stop play.'
   robot.play
 end
-
