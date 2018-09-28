@@ -22,7 +22,9 @@ class Robot
       pos_y = gets.chomp.to_i
       puts "Enter current facing (F), (allowed facing 'NORTH' 'EAST' 'WEST' 'SOUTH'):"
       facing = gets.chomp.upcase
-      puts "Incorrect position #{pos_x}, #{pos_y}, #{facing}, try Enter valid position again" unless valid_position?(pos_x, pos_y, facing)
+      unless valid_position?(pos_x, pos_y, facing)
+        puts "Incorrect position #{pos_x}, #{pos_y}, #{facing}, try Enter valid position again"
+      end
       break if valid_position?(pos_x, pos_y, facing)
     end
     set_robot(pos_x, pos_y, facing)
@@ -42,7 +44,7 @@ class Robot
     when 'LEFT'
       left
     when 'REPORT'
-      puts "#{report}"
+      puts report.to_s
     when 'EXIT'
       puts 'Good bye'
       exit(0)
@@ -89,7 +91,9 @@ class Robot
   end
 
   def valid_position?(pos_x, pos_y, facing)
-    return true if (0..@max_x).to_a.include?(pos_x) && (0..@max_y).to_a.include?(pos_y) && ALLOWED_FACING.include?(facing)
+    if (0..@max_x).to_a.include?(pos_x) && (0..@max_y).to_a.include?(pos_y) && ALLOWED_FACING.include?(facing)
+      true
+    end
   end
 
   def set_robot(pos_x, pos_y, facing)
